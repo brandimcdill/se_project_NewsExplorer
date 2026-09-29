@@ -1,0 +1,27 @@
+.app {
+  min-height: 100vh;
+  background-color: #1a1b22;
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.app__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.app_main {
+  flex: 1;
+  width: 100%;
+}
+
+.search-articles_title,
+.saved-articles_title {
+  color: #ffffff;
+  margin-top: 150px;
+  text-align: center;
+}
