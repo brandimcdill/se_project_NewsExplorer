@@ -1,0 +1,9 @@
+:root {
+    --primary-font: 'Roboto', sans-serif;
+    --heading-font: 'Source Sans Pro', sans-serif;
+
+    --bg-dark: #1A1B22;
+    --accent-blue: #2F71E5;
+    --accent-gray: #E6EBEB;
+    --text-dim: #B6BCBF;
+}
