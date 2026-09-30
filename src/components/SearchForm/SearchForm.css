@@ -1,6 +1,6 @@
 .search-form {
   width: 100%;
-  background-image: url();
+  background-image: url("../../assets/header-background.svg");
   background-size: cover;
   background-position: center;
   padding: 160px;
@@ -15,13 +15,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
   padding: 0 16px;
   box-sizing: border-box;
 }
 
 .search-form__title {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Slab", serif;
   font-size: 60px;
   font-weight: 400;
   line-height: 64px;
@@ -42,18 +42,19 @@
   width: 100%;
   display: flex;
   background-color: #ffffff;
-  border: 1px solid #d1d2d6;
   border-radius: 100px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  height: 64px;
+  outline: none;
 }
 
 .search-form__input {
   flex: 1;
   border: none;
-  background: transparent;
-  padding: 22px 24px;
-  font-family: "Inter", sans-serif;
+  background-color: transparent;
+  padding: 0 24px;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -69,15 +70,50 @@
   background-color: #2f71e5;
   border: none;
   color: #ffffff;
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: normal;
   line-height: 24px;
   padding: 20px 56px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  border-radius: 100px;
+  height: 100%;
+  white-space: nowrap;
 }
 
 .search-form__btn:hover {
   background-color: #255ec2;
+}
+
+.search-error {
+  background-color: #f5f6f7;
+  padding: 80px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.search-error__text {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1a1b22;
+  max-width: 360px;
+  text-align: center;
+  margin: 0;
+  padding: 0 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .search-error {
+    padding: 40px 0;
+  }
+  .search-error__text {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }

@@ -28,7 +28,7 @@ function SearchForm({ onSearch }) {
         <form className="search-form__form" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="search-form__imput"
+            className="search-form__input"
             placeholder="Enter topic"
             value={keyword}
             onChange={handleInputChange}
