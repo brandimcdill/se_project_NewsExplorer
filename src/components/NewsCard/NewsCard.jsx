@@ -15,10 +15,14 @@ function NewsCard({ card, isLoggedIn }) {
   return (
     <article className="news-card">
       <div className="news-card__image-container">
-        <img src={card.urlToImage} alt={card.title} className="news-card__image" />
+        <img
+          src={card.urlToImage}
+          alt={card.title || "News article preview"}
+          className="news-card__image"
+        />
         <button
           type="button"
-          className={`news-card__bookmard ${isSaved ? "news-card__bookmard_active" : ""}`}
+          className={`news-card__bookmark ${isSaved ? "news-card__bookmark_active" : ""}`}
           onClick={handleBookmarkClick}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
