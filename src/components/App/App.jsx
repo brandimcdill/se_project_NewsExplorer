@@ -34,7 +34,7 @@ function App() {
   const handleSearchSubmit = (keyword) => {
     setIsLoading(true);
     setHasSearched(true);
-    setHasError(true);
+    setHasError(false);
     setArticles([]);
     getNews(keyword)
       .then((data) => {
@@ -106,12 +106,16 @@ function App() {
 
                 {isLoading && <Preloader />}
 
-                {isLoading && hasError && (
+                {!isLoading && hasError && (
                   <div className="search-error">
                     <p className="search-error__text">
                       Sorry, something went wrong during the request. Please try again.
                     </p>
                   </div>
+                )}
+
+                {!isLoading && !hasError && hasSearched && articles.length === 0 && (
+                  <NothingFound />
                 )}
 
                 {articles.length > 0 && (
@@ -124,6 +128,25 @@ function App() {
           <Route path="/saved-news" element={<main className="app_main"></main>} />
         </Routes>
         <Footer />
+        <LoginModal
+          isOpen={activeModal === "signin"}
+          onClose={closeActiveModals}
+          onAltBtnClick={handleSignUpClick}
+          handleLogin={handleLogin}
+        />
+
+        <RegisterModal
+          isOpen={activeModal === "signup"}
+          onClose={closeActiveModals}
+          onAltBtnClick={handleSignInClick}
+          handleRegistrationSuccess={handleRegistrationSuccess}
+        />
+
+        <SuccessModal
+          isOpen={activeModal === "success"}
+          onClose={closeActiveModals}
+          onSignInClick={handleSignInClick}
+        />
       </div>
     </div>
   );
