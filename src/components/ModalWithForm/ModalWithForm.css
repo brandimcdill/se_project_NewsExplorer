@@ -108,3 +108,35 @@
 .modal__alt-btn:hover {
   text-decoration: underline;
 }
+
+.modal__label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #b6bcbf;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.modal__input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #000000;
+  outline: none;
+}
+
+.modal__input:focus {
+  border-bottom: 1px solid #2f71e5;
+}
+
+.modal__input::placeholder {
+  color: #b6bcbf;
+}
