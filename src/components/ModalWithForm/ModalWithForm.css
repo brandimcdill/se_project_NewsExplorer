@@ -53,7 +53,7 @@
 }
 
 .modal__title {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 24px;
   font-weight: 900;
   line-height: 28px;
@@ -71,7 +71,7 @@
   border-radius: 80px;
   border: none;
   color: #ffffff;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 18px;
   font-weight: normal;
   line-height: 24px;
@@ -86,7 +86,7 @@
 }
 
 .modal__alt-text {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
@@ -110,7 +110,7 @@
 }
 
 .modal__label {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
@@ -125,7 +125,7 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 8px 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;

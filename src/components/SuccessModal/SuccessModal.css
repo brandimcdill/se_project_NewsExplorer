@@ -3,7 +3,7 @@
 }
 
 .modal__title_type_success {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
@@ -15,7 +15,7 @@
   background: transparent;
   border: none;
   color: #2f71e5;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 18px;
   font-weight: normal;
   line-height: 22px;
