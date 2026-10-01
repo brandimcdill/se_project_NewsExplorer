@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./NewsCard.css";
 
-function NewsCard({ card, isLoggedIn }) {
-  const [isHovered, setIsHovered] = useState(false);
+function NewsCard({ card, isLoggedIn, isSavedNewsRoute }) {
   const [isSaved, setIsSaved] = useState(false);
 
-  const handleBookmarkClick = (e) => {
+  const handleActionClick = (e) => {
     e.stopPropagation();
-    if (isLoggedIn) {
+    if (isSavedNewsRoute) {
+      console.log("Delete card triggered:", card.id);
+    } else if (isLoggedIn) {
       setIsSaved(!isSaved);
     }
   };
@@ -20,14 +21,24 @@ function NewsCard({ card, isLoggedIn }) {
           alt={card.title || "News article preview"}
           className="news-card__image"
         />
+
+        {isSavedNewsRoute && <div className="news-card__keyword-tag">{card.keyword || "News"}</div>}
         <button
           type="button"
-          className={`news-card__bookmark ${isSaved ? "news-card__bookmark_active" : ""}`}
-          onClick={handleBookmarkClick}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          aria-label="Bookmark article"
+          className={
+            isSavedNewsRoute
+              ? "news-card__trash"
+              : `news-card__bookmark ${isSaved ? "news-card__bookmark_active" : ""}`
+          }
+          onClick={handleActionClick}
+          aria-label={isSavedNewsRoute ? "Delete article" : "Bookmard article"}
         />
+
+        {isSavedNewsRoute ? (
+          <div className="news-card__tooltip news-card__tooltip_type_trash">Remove from saved</div>
+        ) : (
+          !isLoggedIn && <div className="news-card__tooltip">Sign in to save articles</div>
+        )}
       </div>
 
       <div className="news-card__content">

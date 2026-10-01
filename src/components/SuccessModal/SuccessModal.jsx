@@ -1,4 +1,3 @@
-import React from "react";
 import "./SuccessModal.css";
 
 function SuccessModal({ isOpen, onClose, onSignInClick }) {

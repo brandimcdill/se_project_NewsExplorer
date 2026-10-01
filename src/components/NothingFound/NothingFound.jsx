@@ -1,4 +1,3 @@
-import React from "react";
 import "./NothingFound.css";
 
 function NothingFound() {

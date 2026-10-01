@@ -1,5 +1,5 @@
 const baseUrl =
-  process.env.NODE_ENV === "production"
+  import.meta.env.MODE === "production"
     ? "https://nomoreparties.co/news/v2/everything"
     : "https://newsapi.org/v2/everything";
 const apiKey = "35162be74ced4380854539bd0a7bffcd";
