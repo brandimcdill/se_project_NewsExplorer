@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function RegisterModal({ isOpen, onClose, onAltBtnClick, handleRegistrationSuccess }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
+
+  useEffect(() => {
+    if (isOpen) resetForm();
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistrationSuccess(email, password, username);
+    if (!isValid) {
+      handleRegistrationSuccess(values.email, values.password, values.username);
+    }
   };
 
   return (
@@ -21,6 +26,7 @@ function RegisterModal({ isOpen, onClose, onAltBtnClick, handleRegistrationSucce
       onSubmit={handleSubmit}
       altBtnText="Sign in"
       onAltBtnClick={onAltBtnClick}
+      isDisabled={!isValid}
     >
       <label className="modal__label">
         Email
@@ -29,10 +35,12 @@ function RegisterModal({ isOpen, onClose, onAltBtnClick, handleRegistrationSucce
           name="email"
           className="modal__input"
           placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          minLength="4"
+          value={values.email || ""}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error modal__error_visible">{errors.email}</span>
       </label>
       <label className="modal__label">
         Password
@@ -41,10 +49,12 @@ function RegisterModal({ isOpen, onClose, onAltBtnClick, handleRegistrationSucce
           name="password"
           className="modal__input"
           placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          minLength="4"
+          value={values.password || ""}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error modal__error_visible">{errors.password}</span>
       </label>
       <label className="modal__label">
         Username
@@ -53,10 +63,13 @@ function RegisterModal({ isOpen, onClose, onAltBtnClick, handleRegistrationSucce
           name="username"
           className="modal__input"
           placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          minLength="2"
+          maxLength="30"
+          value={values.username || ""}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error modal__error_visible">{errors.username}</span>
       </label>
     </ModalWithForm>
   );

@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function LoginModal({ isOpen, onClose, onAltBtnClick, handleLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
+
+  useEffect(() => {
+    if (isOpen) resetForm();
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(email, password, "User");
-    onClose();
+    if (isValid) {
+      handleLogin(values.email, values.password, "User");
+    }
   };
 
   return (
@@ -21,6 +26,7 @@ function LoginModal({ isOpen, onClose, onAltBtnClick, handleLogin }) {
       onSubmit={handleSubmit}
       altBtnText="Sign up"
       onAltBtnClick={onAltBtnClick}
+      isDisabled={!isValid}
     >
       <label className="modal__label">
         Email
@@ -29,10 +35,11 @@ function LoginModal({ isOpen, onClose, onAltBtnClick, handleLogin }) {
           name="email"
           className="modal__input"
           placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email || ""}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error modal__error_visible">{errors.email}</span>
       </label>
       <label className="modal__label">
         Password
@@ -41,10 +48,12 @@ function LoginModal({ isOpen, onClose, onAltBtnClick, handleLogin }) {
           name="password"
           className="modal__input"
           placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          minLength="4"
+          value={values.password || ""}
+          onChange={handleChange}
           required
         />
+        <span className="modal__error modal__error_visible">{errors.password}</span>
       </label>
     </ModalWithForm>
   );
