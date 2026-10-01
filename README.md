@@ -2,19 +2,19 @@ NewsExplorer - Frontend Core Web Application
 
 NewsExplorer is a fully responsive, pixel-perfect frontend React application that allows users to search for real-world headlines using a live third-party news data pipeline and save articles to a personalized, dynamic analytics dashboard.
 
-## 🚀 Live Production Deployment
+## Live Production Deployment
 
 The compiled production bundle is hosted live on the web:
-👉 **[View Live Site](https://brandimcdill.github.io/se_project_NewsExplorer/)**
+**[View Live Site](https://brandimcdill.github.io/se_project_NewsExplorer/)**
 
-## 🎥 Project Pitch Video
+## Project Pitch Video
 
-Check out my walkthrough presentation video where I describe my engineering process, responsible AI collaboration strategies, and technical challenge resolutions:
-👉 **[Watch My Project Pitch Walkthrough](https://drive.google.com/file/d/15t0GaZmH6MuDUOow_-NQz8on-ySW0fK1/view?usp=sharing)**
+Check out [this video](https://drive.google.com/file/d/15t0GaZmH6MuDUOow_-NQz8on-ySW0fK1/view?usp=sharing), where I describe my
+project and some challenges I faced while building it.
 
 ---
 
-## 🛠️ Core Implementations & Milestone Accomplishments
+## Core Implementations & Milestone Accomplishments
 
 - **Live News API Integration (`src/utils/NewsApi.js`):** Engineered a dynamic fetch utility layer utilizing an environment mode switcher (`import.meta.env.MODE`) to allow seamless, secure deployment swaps between localhost development and the live production proxy URL.
 - **Centralized Form Validation Hook (`src/hooks/useFormAndValidation.js`):** Scaled input handling across all workflow modals natively using HTML5 validity keys. Configured custom text overrides to display strict Figma-compliant labels ("Invalid email address", "Invalid password") directly below input rows.
