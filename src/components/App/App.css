@@ -1,6 +1,6 @@
 .app {
   min-height: 100vh;
-  background-color: #1a1b22;
+  background-color: #f5f6f7;
   font-family: "Inter", Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -35,6 +35,7 @@
 }
 
 .saved-news-grid {
+  background-color: #f5f6f7;
   padding: 0 0 80px;
   width: 100%;
   display: flex;

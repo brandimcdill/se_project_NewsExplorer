@@ -23,7 +23,7 @@ function SavedNewsHeader({ userName, savedArticles = [] }) {
     if (totalUnique === 2) {
       return `${sortedKeywords[0]} and ${sortedKeywords[1]}`;
     }
-    if (totalUnique === 1) {
+    if (totalUnique === 3) {
       return `${sortedKeywords[0]}, ${sortedKeywords[1]}, ${sortedKeywords[2]}`;
     }
     return `${sortedKeywords[0]}, ${sortedKeywords[1]}, ${totalUnique - 2} other`;
