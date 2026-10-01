@@ -1,6 +1,6 @@
 import "./SavedNewsHeader.css";
 
-function SavedNewsHeader({ userName, savedArticleCount = [] }) {
+function SavedNewsHeader({ userName, savedArticles = [] }) {
   const articlesCount = savedArticles.length;
 
   const getKeywordSummary = () => {

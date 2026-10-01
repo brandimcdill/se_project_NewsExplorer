@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
@@ -14,6 +14,8 @@ import { getNews } from "../../utils/NewsApi";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
+import NewsCard from "../NewsCard/NewsCard";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,14 +61,14 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (name) => {
     setIsLoggedIn(true);
     setUserName(name || "User");
     closeActiveModals();
     navigate("/");
   };
 
-  const handleRegistrationSuccess = (email, password, name) => {
+  const handleRegistrationSuccess = () => {
     closeActiveModals();
     setActiveModal("success");
   };
@@ -125,7 +127,29 @@ function App() {
               </main>
             }
           />
-          <Route path="/saved-news" element={<main className="app_main"></main>} />
+          <Route
+            path="/saved-news"
+            element={
+              <main className="app_main">
+                <SavedNewsHeader userName={userName} savedArticles={articles} />
+
+                <section className="search-results">
+                  <div className="search-result__container">
+                    <div className="search-results__grid">
+                      {articles.slice(0, 3).map((article) => (
+                        <NewsCard
+                          key={article.id}
+                          card={article}
+                          isLoggedIn={isLoggedIn}
+                          isSavedNewsRoute={true}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              </main>
+            }
+          />
         </Routes>
         <Footer />
         <LoginModal

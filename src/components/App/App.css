@@ -25,3 +25,19 @@
   margin-top: 150px;
   text-align: center;
 }
+
+.saved-news-page {
+  background-color: #f5f6f7;
+  width: 100%;
+  min-height: calc(100vh-80px);
+  display: flex;
+  flex-direction: column;
+}
+
+.saved-news-grid {
+  padding: 0 0 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}

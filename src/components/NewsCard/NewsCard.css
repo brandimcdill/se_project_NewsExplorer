@@ -70,7 +70,17 @@
   line-height: 14px;
   color: #1a1b22;
   white-space: nowrap;
-  animation: fadeIn 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+  pointer-events: none;
+}
+
+.news-card__bookmark:hover + .news-card__tooltip {
+  opacity: 3;
+  visibility: visible;
 }
 
 .news-card__content {
@@ -127,6 +137,46 @@
   text-transform: uppercase;
   color: #b6bcbf;
   margin-top: auto;
+}
+
+.news-card__trash {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("../../assets/trashcan.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.news-card__trash:hover {
+  background-color: #ffffff;
+  background-image: url("../../assets/trashcan-selected.svg");
+}
+
+.news-card__keyword-tag {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 8px 22px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 24px;
+  color: #000000;
+}
+
+.news-card__trash:hover + .news-card__tooltip_type_trash {
+  opacity: 1;
+  visibility: visible;
 }
 
 @keyframes fadeIn {
