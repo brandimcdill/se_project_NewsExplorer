@@ -99,6 +99,13 @@
   color: #ffffff;
 }
 
+.header__logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+
 .header__logout-btn_theme_dark {
   color: #ffffff;
   border-color: #ffffff;
@@ -107,6 +114,24 @@
 .header__logout-btn_theme_light {
   color: #1a1b22;
   border-color: #1a1b22;
+}
+
+.header__logout-icon_theme_light {
+  width: 24px;
+  height: 24px;
+  background-image: url("../../assets/signout_btn-dark.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header__logout-icon_theme_dark {
+  width: 24px;
+  height: 24px;
+  background-image: url("../../assets/signout_btn-light.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .header__signin-btn:hover,

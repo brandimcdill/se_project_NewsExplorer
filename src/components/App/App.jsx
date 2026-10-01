@@ -26,38 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [savedArticles, setSavedArticles] = useState([
-    {
-      id: "mock-1",
-      keyword: "Nature",
-      title: "Everyone Needs a Special 'Sit Spot' in Nature",
-      publishedAt: "November 4, 2020",
-      description:
-        "Ever since I discovered Grandma's garden, I've spent hours watching the cardinals build nests and tracking how the morning dew patterns cling to the ivy leaves...",
-      source: "Treehugger",
-      urlToImage: "https://yandex.net",
-    },
-    {
-      id: "mock-2",
-      keyword: "AI",
-      title: "OpenAI Announces New Security Frameworks",
-      publishedAt: "October 1, 2026",
-      description:
-        "From endpoint authorization nodes to rigorous identity management metrics, the latest model integrates advanced protection layers to defend sensitive network targets...",
-      source: "Gizmodo",
-      urlToImage: "https://yandex.net",
-    },
-    {
-      id: "mock-3",
-      keyword: "Tech",
-      title: "The Rapid Evolution of Consumer Electronics Standards",
-      publishedAt: "September 28, 2026",
-      description:
-        "A deep dive into modern hardware ecosystems shows that high-capacity cellular bandwidth and pixel-dense screen profiles are reshaping user application design parameters globally...",
-      source: "TechCrunch",
-      urlToImage: "https://yandex.net",
-    },
-  ]);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const navigate = useNavigate();
 
@@ -118,6 +87,9 @@ function App() {
     setIsLoggedIn(false);
     setUserName("");
     localStorage.removeItem("jwt");
+    setArticles([]);
+    setHasSearched(false);
+    setHasError(false);
     navigate("/");
   };
 
