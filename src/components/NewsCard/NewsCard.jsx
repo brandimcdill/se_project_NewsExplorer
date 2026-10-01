@@ -1,15 +1,22 @@
 import { useState } from "react";
 import "./NewsCard.css";
 
-function NewsCard({ card, isLoggedIn, isSavedNewsRoute }) {
+function NewsCard({ card, isLoggedIn, isSavedNewsRoute, onDeleteClick, onSaveClick }) {
   const [isSaved, setIsSaved] = useState(false);
 
   const handleActionClick = (e) => {
     e.stopPropagation();
     if (isSavedNewsRoute) {
-      console.log("Delete card triggered:", card.id);
+      onDeleteClick(card.id);
     } else if (isLoggedIn) {
-      setIsSaved(!isSaved);
+      const newSavedState = !isSaved;
+      setIsSaved(newSavedState);
+
+      if (newSavedState) {
+        onSaveClick(card, "News");
+      } else {
+        onDeleteClick(card.id);
+      }
     }
   };
 

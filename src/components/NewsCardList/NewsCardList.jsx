@@ -2,7 +2,7 @@ import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ articles, isLoggedIn }) {
+function NewsCardList({ articles, isLoggedIn, onSaveClick, onDeleteClick }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
   const handleShowMore = () => {
@@ -15,7 +15,13 @@ function NewsCardList({ articles, isLoggedIn }) {
         <h2 className="search-results__title">Search results</h2>
         <div className="search-results__grid">
           {articles.slice(0, visibleCount).map((article) => (
-            <NewsCard key={article.id} card={article} isLoggedIn={isLoggedIn} />
+            <NewsCard
+              key={article.id}
+              card={article}
+              isLoggedIn={isLoggedIn}
+              onSaveClick={onSaveClick}
+              onDeleteClick={onDeleteClick}
+            />
           ))}
         </div>
 

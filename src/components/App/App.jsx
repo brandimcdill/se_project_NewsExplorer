@@ -26,12 +26,53 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [savedArticles, setSavedArticles] = useState([
+    {
+      id: "mock-1",
+      keyword: "Nature",
+      title: "Everyone Needs a Special 'Sit Spot' in Nature",
+      publishedAt: "November 4, 2020",
+      description:
+        "Ever since I discovered Grandma's garden, I've spent hours watching the cardinals build nests and tracking how the morning dew patterns cling to the ivy leaves...",
+      source: "Treehugger",
+      urlToImage: "https://yandex.net",
+    },
+    {
+      id: "mock-2",
+      keyword: "AI",
+      title: "OpenAI Announces New Security Frameworks",
+      publishedAt: "October 1, 2026",
+      description:
+        "From endpoint authorization nodes to rigorous identity management metrics, the latest model integrates advanced protection layers to defend sensitive network targets...",
+      source: "Gizmodo",
+      urlToImage: "https://yandex.net",
+    },
+    {
+      id: "mock-3",
+      keyword: "Tech",
+      title: "The Rapid Evolution of Consumer Electronics Standards",
+      publishedAt: "September 28, 2026",
+      description:
+        "A deep dive into modern hardware ecosystems shows that high-capacity cellular bandwidth and pixel-dense screen profiles are reshaping user application design parameters globally...",
+      source: "TechCrunch",
+      urlToImage: "https://yandex.net",
+    },
+  ]);
 
   const navigate = useNavigate();
 
   const handleSignInClick = () => setActiveModal("signin");
   const handleSignUpClick = () => setActiveModal("signup");
   const closeActiveModals = () => setActiveModal("");
+
+  const handleSavedArticle = (card, keyword) => {
+    const articleWithKeyword = { ...card, keyword: keyword || "News" };
+    setSavedArticles([articleWithKeyword, ...savedArticles]);
+  };
+
+  const handleDeleteArticle = (cardId) => {
+    setSavedArticles(savedArticles.filter((art) => art.id !== cardId));
+  };
 
   const handleSearchSubmit = (keyword) => {
     setIsLoading(true);
@@ -121,7 +162,12 @@ function App() {
                 )}
 
                 {articles.length > 0 && (
-                  <NewsCardList articles={articles} isLoggedIn={isLoggedIn} />
+                  <NewsCardList
+                    articles={articles}
+                    isLoggedIn={isLoggedIn}
+                    onSaveClick={handleSavedArticle}
+                    onDeleteClick={handleDeleteArticle}
+                  />
                 )}
                 <About />
               </main>
@@ -131,17 +177,18 @@ function App() {
             path="/saved-news"
             element={
               <main className="app_main">
-                <SavedNewsHeader userName={userName} savedArticles={articles} />
+                <SavedNewsHeader userName={userName} savedArticles={savedArticles} />
 
-                <section className="search-results">
+                <section className="search-news-grid">
                   <div className="search-result__container">
                     <div className="search-results__grid">
-                      {articles.slice(0, 3).map((article) => (
+                      {savedArticles.map((article) => (
                         <NewsCard
                           key={article.id}
                           card={article}
                           isLoggedIn={isLoggedIn}
                           isSavedNewsRoute={true}
+                          onDeleteClick={handleDeleteArticle}
                         />
                       ))}
                     </div>
