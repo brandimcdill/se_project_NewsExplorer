@@ -2,7 +2,7 @@ import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ articles, isLoggedIn, onSaveClick, onDeleteClick }) {
+function NewsCardList({ articles, isLoggedIn, onSaveClick, onDeleteClick, savedArticles }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
   const handleShowMore = () => {
@@ -19,6 +19,7 @@ function NewsCardList({ articles, isLoggedIn, onSaveClick, onDeleteClick }) {
               key={article.id}
               card={article}
               isLoggedIn={isLoggedIn}
+              savedArticles={savedArticles}
               onSaveClick={onSaveClick}
               onDeleteClick={onDeleteClick}
             />

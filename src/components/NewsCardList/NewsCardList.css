@@ -63,10 +63,15 @@
   .search-results__grid {
     grid-template-columns: 1fr;
     gap: 12px;
-    margin-bottom: 32px;
+    margin: 32px 0;
   }
   .search-results__more-btn {
     width: 100%;
-    padding: 16px 0;
+    padding: 0;
+  }
+  .search-results__title {
+    margin: 20px 0;
+    font-size: 35px;
+    line-height: 40px;
   }
 }

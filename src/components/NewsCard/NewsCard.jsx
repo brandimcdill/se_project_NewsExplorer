@@ -1,21 +1,24 @@
-import { useState } from "react";
 import "./NewsCard.css";
 
-function NewsCard({ card, isLoggedIn, isSavedNewsRoute, onDeleteClick, onSaveClick }) {
-  const [isSaved, setIsSaved] = useState(false);
-
+function NewsCard({
+  card,
+  isLoggedIn,
+  isSavedNewsRoute,
+  onDeleteClick,
+  onSaveClick,
+  savedArticles = [],
+}) {
+  const isSaved = savedArticles.some((art) => art.title === card.title);
   const handleActionClick = (e) => {
     e.stopPropagation();
     if (isSavedNewsRoute) {
       onDeleteClick(card.id);
     } else if (isLoggedIn) {
-      const newSavedState = !isSaved;
-      setIsSaved(newSavedState);
-
-      if (newSavedState) {
+      if (!isSaved) {
         onSaveClick(card, "News");
       } else {
-        onDeleteClick(card.id);
+        const savedMatch = savedArticles.find((art) => art.title === card.title);
+        onDeleteClick(savedMatch ? savedMatch.id : card.id);
       }
     }
   };
@@ -23,12 +26,13 @@ function NewsCard({ card, isLoggedIn, isSavedNewsRoute, onDeleteClick, onSaveCli
   return (
     <article className="news-card">
       <div className="news-card__image-container">
-        <img
-          src={card.urlToImage}
-          alt={card.title || "News article preview"}
-          className="news-card__image"
-        />
-
+        <a href={card.url} target="_blank" rel="noreferrer" className="news-card__image-link">
+          <img
+            src={card.urlToImage}
+            alt={card.title || "News article preview"}
+            className="news-card__image"
+          />
+        </a>
         {isSavedNewsRoute && <div className="news-card__keyword-tag">{card.keyword || "News"}</div>}
         <button
           type="button"

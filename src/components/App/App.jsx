@@ -53,6 +53,7 @@ function App() {
         const formattedArticles = data.articles.map((art, index) => ({
           id: index,
           title: art.title,
+          url: art.url,
           publishedAt: new Date(art.publishedAt).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
@@ -137,6 +138,7 @@ function App() {
                   <NewsCardList
                     articles={articles}
                     isLoggedIn={isLoggedIn}
+                    savedArticles={savedArticles}
                     onSaveClick={handleSavedArticle}
                     onDeleteClick={handleDeleteArticle}
                   />
