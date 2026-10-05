@@ -1,0 +1,39 @@
+.nothing-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  background-color: #f5f6f7;
+  width: 100%;
+}
+
+.nothing-found__icon {
+  width: 96px;
+  height: 96px;
+  background-image: url("../../assets/not-found-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 24px;
+}
+
+.nothing-found__title {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0 0 16px;
+}
+
+.nothing-found__subtitle {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #b6bcbf;
+  max-width: 360px;
+  text-align: center;
+  margin: 0;
+}
