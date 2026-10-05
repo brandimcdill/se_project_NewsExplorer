@@ -20,7 +20,7 @@ function LoginModal({ isOpen, onClose, onAltBtnClick, handleLogin }) {
     <ModalWithForm
       title="Sign in"
       btnText="Sign in"
-      name="login"
+      name="signin"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

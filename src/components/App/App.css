@@ -42,3 +42,9 @@
   justify-content: center;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 600px) {
+  .saved-articles-grid {
+    padding: 0 16px;
+  }
+}

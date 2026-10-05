@@ -20,7 +20,7 @@ function RegisterModal({ isOpen, onClose, onAltBtnClick, handleRegistrationSucce
     <ModalWithForm
       title="Sign up"
       btnText="Sign up"
-      name="register"
+      name="signup"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

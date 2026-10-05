@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
-import SearchForm from "../SearchForm/SearchForm";
 import "./App.css";
 
 import LoginModal from "../../components/LoginModal/LoginModal";
 import RegisterModal from "../../components/RegisterModal/RegisterModal";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
-import About from "../About/About";
 import Footer from "../Footer/Footer";
+import Main from "../Main/Main";
 
 import { getNews } from "../../utils/NewsApi";
-import NewsCardList from "../NewsCardList/NewsCardList";
-import Preloader from "../Preloader/Preloader";
-import NothingFound from "../NothingFound/NothingFound";
-import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
-import NewsCard from "../NewsCard/NewsCard";
+import SavedArticlesPage from "../SavedArticlesPage/SavedArticlesPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -94,16 +89,6 @@ function App() {
     navigate("/");
   };
 
-  useEffect(() => {
-    const handleEscapeClose = (e) => {
-      if (e.key === "Escape") closeActiveModals();
-    };
-    if (activeModal) {
-      window.addEventListener("keydown", handleEscapeClose);
-    }
-    return () => window.removeEventListener("keydown", handleEscapeClose);
-  }, [activeModal]);
-
   return (
     <div className="app">
       <div className="app__content">
@@ -117,58 +102,28 @@ function App() {
           <Route
             path="/"
             element={
-              <main className="app_main">
-                <SearchForm onSearch={handleSearchSubmit} />
-
-                {isLoading && <Preloader />}
-
-                {!isLoading && hasError && (
-                  <div className="search-error">
-                    <p className="search-error__text">
-                      Sorry, something went wrong during the request. Please try again.
-                    </p>
-                  </div>
-                )}
-
-                {!isLoading && !hasError && hasSearched && articles.length === 0 && (
-                  <NothingFound />
-                )}
-
-                {articles.length > 0 && (
-                  <NewsCardList
-                    articles={articles}
-                    isLoggedIn={isLoggedIn}
-                    savedArticles={savedArticles}
-                    onSaveClick={handleSavedArticle}
-                    onDeleteClick={handleDeleteArticle}
-                  />
-                )}
-                <About />
-              </main>
+              <Main
+                onSearch={handleSearchSubmit}
+                isLoading={isLoading}
+                hasError={hasError}
+                hasSearched={hasSearched}
+                articles={articles}
+                isLoggedIn={isLoggedIn}
+                onSaveClick={handleSavedArticle}
+                onDeleteClick={handleDeleteArticle}
+                savedArticles={savedArticles}
+              />
             }
           />
           <Route
             path="/saved-news"
             element={
-              <main className="app_main">
-                <SavedNewsHeader userName={userName} savedArticles={savedArticles} />
-
-                <section className="search-news-grid">
-                  <div className="search-result__container">
-                    <div className="search-results__grid">
-                      {savedArticles.map((article) => (
-                        <NewsCard
-                          key={article.id}
-                          card={article}
-                          isLoggedIn={isLoggedIn}
-                          isSavedNewsRoute={true}
-                          onDeleteClick={handleDeleteArticle}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              </main>
+              <SavedArticlesPage
+                userName={userName}
+                savedArticles={savedArticles}
+                isLoggedIn={isLoggedIn}
+                handleDeleteArticle={handleDeleteArticle}
+              />
             }
           />
         </Routes>

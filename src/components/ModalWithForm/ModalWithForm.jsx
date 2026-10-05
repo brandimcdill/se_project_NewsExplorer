@@ -1,3 +1,4 @@
+import Modal from "../Modal/Modal";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
@@ -11,32 +12,26 @@ function ModalWithForm({
   altBtnText,
   onAltBtnClick,
 }) {
+  if (!isOpen) return null;
+
   return (
-    <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
-      <div className="modal__container">
-        <button
-          type="button"
-          className="modal__close-btn"
-          onClick={onClose}
-          aria-label="Close modal"
-        />
-        <h3 className="modal__title">{title}</h3>
-        <form className="modal__form" name={name} onSubmit={onSubmit}>
-          {children}
-          <button type="submit" className="modal__submit-btn">
-            {btnText}
+    <Modal name={name} isOpen={isOpen} onClose={onClose}>
+      <h3 className="modal__title">{title}</h3>
+      <form className="modal__form" name={name} onSubmit={onSubmit}>
+        {children}
+        <button type="submit" className="modal__submit-btn">
+          {btnText}
+        </button>
+      </form>
+      {altBtnText && (
+        <p className="modal__alt-text">
+          or{" "}
+          <button type="button" className="modal__alt-btn" onClick={onAltBtnClick}>
+            {altBtnText}
           </button>
-        </form>
-        {altBtnText && (
-          <p className="modal__alt-text">
-            or{" "}
-            <button type="button" className="modal__alt-btn" onClick={onAltBtnClick}>
-              {altBtnText}
-            </button>
-          </p>
-        )}
-      </div>
-    </div>
+        </p>
+      )}
+    </Modal>
   );
 }
 
